@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Suncrest Bay — Open World Crime</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<canvas id="game"></canvas>
+<div id="vignette"></div>
+
+<!-- HUD -->
+<div id="hud" class="hidden">
+  <div id="hud-top-right">
+    <div id="cash">$150</div>
+    <div id="stars" class="stars">☆☆☆☆☆</div>
+    <div id="clock">09:20 • Day 1</div>
+    <div id="district">Suncrest Bay</div>
+    <div id="station">♪ SUNSET FM</div>
+  </div>
+  <div id="hud-bottom-left">
+    <div id="health-row">
+      <div class="bar"><div id="health-bar" class="bar-fill health"></div></div>
+      <span id="health-text">100 HP</span>
+    </div>
+    <div id="armor-row">
+      <div class="bar"><div id="armor-bar" class="bar-fill armor"></div></div>
+      <span>ARMOR</span>
+    </div>
+    <div id="respect-row">
+      <div class="bar"><div id="respect-bar" class="bar-fill respect"></div></div>
+      <span id="respect-text">RESPECT 0</span>
+    </div>
+    <div id="weapon-row"><span id="weapon">✊ Fists</span> <span id="ammo">∞</span></div>
+  </div>
+  <div id="objective-box" class="hidden">
+    <div id="objective-mission"></div>
+    <div id="objective"></div>
+  </div>
+  <div id="speed-box" class="hidden"><span id="speed">0 km/h</span></div>
+  <div id="prompt" class="hidden"></div>
+</div>
+
+<div id="banner" class="hidden">
+  <div id="banner-title"></div>
+  <div id="banner-sub"></div>
+</div>
+<div id="toast" class="hidden"></div>
+
+<div id="dialogue" class="hidden">
+  <div id="dialogue-portrait">😎</div>
+  <div id="dialogue-body">
+    <div id="dialogue-speaker">Dax</div>
+    <div id="dialogue-text"></div>
+    <div id="dialogue-hint">Press E to continue</div>
+  </div>
+</div>
+
+<!-- Title menu -->
+<div id="menu">
+  <div class="menu-inner">
+    <div class="logo-sub">WELCOME TO</div>
+    <h1 class="logo">SUNCREST<span> BAY</span></h1>
+    <div class="tagline">An open-world crime story. Steal cars. Outrun the law. Take the city.</div>
+    <div class="menu-buttons">
+      <button id="btn-new" class="btn primary">▶ New Game</button>
+      <button id="btn-continue" class="btn">↻ Continue</button>
+      <button id="btn-how" class="btn">❔ How to play</button>
+    </div>
+    <div id="howto" class="hidden">
+      <p><b>WASD</b> walk / drive &nbsp;•&nbsp; <b>Mouse</b> aim, <b>click</b> shoot &nbsp;•&nbsp; <b>F</b> enter car / boat &nbsp;•&nbsp; <b>E</b> interact &nbsp;•&nbsp; <b>Space</b> handbrake &nbsp;•&nbsp; <b>Shift</b> sprint</p>
+      <p><b>1–5</b> weapons &nbsp;•&nbsp; <b>T</b> taxi fare &nbsp;•&nbsp; <b>Y</b> courier &nbsp;•&nbsp; <b>I</b> street race &nbsp;•&nbsp; <b>U</b> mayhem &nbsp;•&nbsp; <b>G</b> turf war &nbsp;•&nbsp; <b>B</b> bribe cops &nbsp;•&nbsp; <b>N</b> radio &nbsp;•&nbsp; <b>M</b> mute &nbsp;•&nbsp; <b>Esc</b> pause</p>
+      <p>Follow the ◆ marker to start missions. Earn cash, buy guns at the Gun Barn, tune cars at Sal's Garage, buy businesses for passive income, and find all 40 medallions.</p>
+    </div>
+    <div class="menu-foot">An original game — no assets from any commercial title. Sound is synthesized live. Your progress saves locally.</div>
+  </div>
+</div>
+
+<!-- Pause menu -->
+<div id="pause-menu" class="overlay hidden">
+  <div class="panel">
+    <h2>PAUSED</h2>
+    <button id="btn-resume" class="btn primary">▶ Resume</button>
+    <button id="btn-stats" class="btn">📊 Stats</button>
+    <button id="btn-save" class="btn">💾 Save game</button>
+    <button id="btn-quit" class="btn">🏠 Quit to title</button>
+    <div class="panel-hint">WASD move • F enter car • E interact • T taxi • I race • Esc resume</div>
+  </div>
+</div>
+
+<!-- Stats -->
+<div id="stats-menu" class="overlay hidden">
+  <div class="panel wide">
+    <h2>DAX MERCER — STATS</h2>
+    <div id="stats-list"></div>
+    <button id="btn-stats-close" class="btn primary">Close</button>
+  </div>
+</div>
+
+<!-- Shop -->
+<div id="shop-menu" class="overlay hidden">
+  <div class="panel wide">
+    <h2 id="shop-title">Shop</h2>
+    <div id="shop-list"></div>
+    <button id="shop-close" class="btn primary">Done (Esc)</button>
+  </div>
+</div>
+
+<!-- Death -->
+<div id="dead-menu" class="overlay hidden">
+  <div class="panel">
+    <h2 class="red">WASTED</h2>
+    <p>Dax went down. St. Mercy Hospital will patch you up — for a fee.</p>
+    <p>Cash on hand: <b id="dead-cash">$0</b></p>
+    <button id="btn-respawn" class="btn primary">🏥 Wake up at the hospital</button>
+  </div>
+</div>
+
+<!-- Busted -->
+<div id="busted-menu" class="overlay hidden">
+  <div class="panel">
+    <h2 class="blue">BUSTED</h2>
+    <p>The SCPD caught up with you. Time served, weapons confiscated.</p>
+    <p>Cash on hand: <b id="busted-cash">$0</b></p>
+    <button id="btn-release" class="btn primary">🚔 Walk free</button>
+  </div>
+</div>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
